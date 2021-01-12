@@ -1,5 +1,7 @@
 # Spring Cloud Gateway
 
+### Running on Server Port 9090
+
 ##### based on project by John Thompson (Spring Framework Guru)
 
 [John Thompson lecture](https://www.udemy.com/course/spring-boot-microservices-with-spring-cloud-beginner-to-guru/learn/lecture/18386668)
