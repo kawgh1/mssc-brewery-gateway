@@ -7,14 +7,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 /**
- * created by kw on 1/13/2021 @ 12:03 PM
+ * created by kw on 1/18/2021 @ 10:50 AM
  */
-@Profile("!local-discovery")
+@Profile("local-discovery")
 @Configuration
-public class LocalHostRouteConfig {
+public class LoadBalancedRoutesConfig {
 
     @Bean
-    public RouteLocator localHostRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator loadBalancedRoutes(RouteLocatorBuilder builder) {
 
         // For our beer service we can run routes like http://localhost:8080/api/v1/beer to see available beers
         // this code now allows the same requests to be made to port 9090
@@ -23,13 +23,17 @@ public class LocalHostRouteConfig {
 
         return builder.routes()
                 .route(r -> r.path("/api/v1/beer/*", "/api/v1/beer*", "/api/v1/beerUpc/*")
-                        .uri("http://localhost:8080")
+//                        .uri("http://localhost:8080")
+                        // "lb" is for load balanced - and this is how the Gateway will look up services on Eureka
+                        .uri("lb://beer-service")
                         .id("beer-service"))
                 .route(r -> r.path("/api/v1/customers/**")
-                        .uri("http://localhost:8081")
+//                        .uri("http://localhost:8081")
+                        .uri("lb://order-service")
                         .id("order-service"))
                 .route(r -> r.path("/api/v1/beer/*/inventory")
-                        .uri("http://localhost:8082")
+//                        .uri("http://localhost:8082")
+                        .uri("lb://inventory-service")
                         .id("inventory-service"))
                 .build();
     }
