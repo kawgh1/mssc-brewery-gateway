@@ -1,6 +1,6 @@
 # Spring Cloud Gateway
 
-# For microservices to use JMS Messaging on localhost, Docker must be installed and localhost must be connected to an ActiveMQ Server
+### For microservices to use JMS Messaging on localhost, Docker must be installed and localhost must be connected to an ActiveMQ Server
 [https://github.com/vromero/activemq-artemis-docker](https://github.com/vromero/activemq-artemis-docker)
 ### defaults for this docker image - github.com/vromero/activemq-artemis
 spring.artemis.user=artemis
@@ -9,6 +9,7 @@ spring.artemis.password=simetraehcapa
 [Docker ActiveMQ](#docker-activemq)
 
 ### Running on Server Port 9090
+
 
 ##### based on project by John Thompson (Spring Framework Guru)
 
