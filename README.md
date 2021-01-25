@@ -1,4 +1,5 @@
 # Spring Cloud Gateway
+![eureka server diagram](https://raw.githubusercontent.com/kawgh1/brewery-eureka-server/master/eureka-diagram1.png)
 
 ### For microservices to use JMS Messaging on localhost, Docker must be installed and localhost must be connected to an ActiveMQ Server
 [https://github.com/vromero/activemq-artemis-docker](https://github.com/vromero/activemq-artemis-docker)
