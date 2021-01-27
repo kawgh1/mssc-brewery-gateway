@@ -18,7 +18,7 @@ spring.artemis.password=simetraehcapa
 
 # [Contents](#contents)
 1. [API Gateway Pattern](#api-gateway-pattern)
-2. [Spring Cloud Sleuth (Zipkin)](#spring-cloud-sleuth)
+2. [Spring Cloud Sleuth (Zipkin)](#spring-cloud-sleuth-zipkin)
 3. [Docker ActiveMQ](#docker-activemq)
 
 - ### [API Gateway Pattern](#api-gateway-patten)
@@ -80,7 +80,7 @@ spring.artemis.password=simetraehcapa
 [Top](#contents)
     
 
-### [Spring Cloud Sleuth (Zipkin)](#spring-cloud-sleuth)
+### [Spring Cloud Sleuth (Zipkin)](#spring-cloud-sleuth-zipkin)
 - Distributed Tracing Overview
 
 	- Allows us to see data and process flows as they go through the service
