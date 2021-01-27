@@ -16,7 +16,12 @@ spring.artemis.password=simetraehcapa
 
 [John Thompson lecture](https://www.udemy.com/course/spring-boot-microservices-with-spring-cloud-beginner-to-guru/learn/lecture/18386668)
 
-- ### API Gateway Pattern
+# [Contents](#contents)
+1. [API Gateway Pattern](#api-gateway-pattern)
+2. [Spring Cloud Sleuth (Zipkin)](#spring-cloud-sleuth)
+3. [Docker ActiveMQ](#docker-activemq)
+
+- ### [API Gateway Pattern](#api-gateway-patten)
 	- #### Gateway Responsibilities
 		- Routing / Dynamic Routing
 		- Security
@@ -72,8 +77,90 @@ spring.artemis.password=simetraehcapa
     - can deploy Spring Cloud Gateway literally on some generic Linux servers and have full functionality
     - Not tied to Docker, Google Cloud, AWS, Kubernetes, Docker Swarm, Windows, Linux, etc. - totally agnostic
     
+[Top](#contents)
     
-    
+
+### [Spring Cloud Sleuth (Zipkin)](#spring-cloud-sleuth)
+- Distributed Tracing Overview
+
+	- Allows us to see data and process flows as they go through the service
+	- Ex.) We get a request that comes in through the Gateway, going to Service A, Service B, maybe Service C
+		and then get a response.
+	- Dstributing Tracing allows you to "see" this flow through the system.
+	- This is important because if there's a known or unknown failure anywhere in a request path,
+		this allows you to isolate the problem quickly and visualize the chain of events leading to that failure.
+
+- What is Distributing Tracing?
+	- Monoliths have luxury of being self-contained, thus tracing typically is not needed.
+	- Reminder: a simple search request on Amazon is going to span potentially hundreds of
+	microservices to return results - many algorithms, inventory, rating, purchase history, seasonal promotions, etc.
+	- Transactions in microservices can span across many services / instances and even multiple data centers
+	- Distributed Tracing provides the tools to trace a transaction across services and nodes
+	- Distributed Tracing is used primarily for two aspects:
+		- Perofrmance monitoring across steps
+		- Logging / Troubleshotting
+
+- Spring Cloud Sleuth
+	- Spring Cloud Sleuth is the distributed tracing tool for Spring Cloud
+	- Spring Cloud Sleuth uses an open source distributed tracing library called "Brave"
+	- Conceptually what happens:
+		- Headers on HTTP requests or messages are enhanced with trace data
+		- Logging is enhanced with trace data
+		- Optionally trace data can be reported to Zipkin (tracing server)
+
+- Tracing Terminology
+	- Spring Cloud Sleuth uses terminology established by Dapper
+		- Dapper is a distributed tracing system created by Google for their production systems
+	- **Span** - is a basic unit of work. Typically a send and receive of a message
+	- **Trace** - A set of spans for a transaction
+	- **CS/SR** - Client Sent / Sender Received - aka the request
+	- **SS/CR** - Sender Sent / Client Received - aka the response
+
+- Zipkin Server
+	- Zipkin is an open source project used to report distributed tracing metrics
+	- Information can be reported to Zipkin via webservices via HTTP
+		- Optionally metrics can be provided via Kafka or Rabbit
+	- Zipkin is a Spring MVC project
+		- Recommended to use binary distribution or Docker image
+		- Building your own is not supported
+	- Uses in-memory database for development
+		- Cassandra or Elasticsearch should be used for production for data persistence
+
+- Zipkin Quickstart
+	- https://zipkin.io/pages/quickstart.html
+	- via Curl:
+		curl -sSL https://zipkin.io/quickstart.sh | bash -s
+		java -jar zipkin.jar
+	- via Docker (Recommended):
+		docker run -d -p 9411:9411 openzipkin/zipkin
+	- View traces in UI at:
+		- http://localhost:9411/zipkin/
+
+- Installing Spring Cloud Sleuth
+
+	- org.springframework.cloud : spring-cloud-start-sleuth
+		- Starter for logging only
+	- org.springframework.cloud : spring-cloud-starter-zipkin
+		- Start for Sleuth with Zipkin - includes Sleuth dependencies
+	- Property **spring.zipkin.baseUrl** is used to configure Zipkin server
+
+- Logging Output Spring Cloud Sleuth
+	- **Example: - DEBUG [beer-service, 354as6d8f76, 57a4sdfa54, true]**
+		- **[Appname, TraceId, SpanId, exportable]**
+	- Appname - Spring Boot Application Name
+	- TraceId - Id value of the trace
+	- SpanId - Id of the span
+	- Exportable - Should span be exported to Zipkin? (Programmatic configuration option)
+
+- Loggin Configuration
+	- Microservices will typically use consolidated logging
+	- Number of different approaches for this - highly dependent on deployment environment
+	- To supposed consolidated logging, log data should be available in JSON
+	- Spring Boot by default uses logback, which is easy to configure for JSON output
+	
+[Top](#contents)
+
+
     
 [Docker ActiveMQ](#docker-activemq)
 
@@ -105,3 +192,5 @@ Apache ActiveMQ Artemis x.x.x
 HH:mm:ss,SSS INFO  [...] AMQ101000: Starting ActiveMQ Artemis Server
 
 At this point you can open the web server port at 8161 and check the web console using the default username and password of artemis / simetraehcapa.
+
+[Top](#contents)

@@ -22,6 +22,12 @@
     </properties>
 
     <dependencies>
+        <!--        Spring Cloud Sleuth / Zipkin - Distributed Tracing localhost:9411-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+<!--        cloud -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
