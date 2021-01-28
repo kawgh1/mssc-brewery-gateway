@@ -19,7 +19,8 @@ spring.artemis.password=simetraehcapa
 # [Contents](#contents)
 1. [API Gateway Pattern](#api-gateway-pattern)
 2. [Spring Cloud Sleuth (Zipkin)](#spring-cloud-sleuth-zipkin)
-3. [Docker ActiveMQ](#docker-activemq)
+3. [Cloud Security](#cloud-security)
+4. [Docker ActiveMQ](#docker-activemq)
 
 - ### [API Gateway Pattern](#api-gateway-patten)
 	- #### Gateway Responsibilities
@@ -160,7 +161,7 @@ spring.artemis.password=simetraehcapa
 	
 [Top](#contents)
 
-### - Cloud Security
+### [Cloud Security](#cloud-security)
 
 - Spring Cloud Security
 - Property Encryption / Decryption
