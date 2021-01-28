@@ -29,8 +29,8 @@ public class LoadBalancedRoutesConfig {
                         .id("beer-service"))
                 .route(r -> r.path("/api/v1/customers/**")
 //                        .uri("http://localhost:8081")
-                        .uri("lb://order-service")
-                        .id("order-service"))
+                        .uri("lb://beer-order-service")
+                        .id("beer-order-service"))
                 .route(r -> r.path("/api/v1/beer/*/inventory")
                         // inventory failover CIRCUIT BREAKER filter using Resilience4J
                         .filters(f -> f.circuitBreaker(c -> c.setName("inventoryCB")
