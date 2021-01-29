@@ -1,0 +1,70 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------< com.kwgdev:mssc-brewery-gateway >-------------------
+[INFO] Building mssc-brewery-gateway 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- docker-maven-plugin:0.33.0:build (default-cli) @ mssc-brewery-gateway ---
+[INFO] Copying files to C:\Users\----\IdeaProjects\mssc-brewery-gateway\target\docker\<docker-username>\mssc-brewery-gateway\build\maven
+[INFO] Building tar: C:\Users\----\IdeaProjects\mssc-brewery-gateway\target\docker\<docker-username>\mssc-brewery-gateway\tmp\docker-build.tar
+[INFO] DOCKER> [<docker-username>/mssc-brewery-gateway:latest] "mssc-brewery-gateway": Created docker-build.tar in 3 seconds
+[INFO] DOCKER> Step 1/13 : FROM openjdk:11-jre-slim as builder
+[INFO] DOCKER>
+[INFO] DOCKER> ---> ff68ba8d72c9
+[INFO] DOCKER> Step 2/13 : WORKDIR application
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Using cache
+[INFO] DOCKER> ---> 3e6956397948
+[INFO] DOCKER> Step 3/13 : ADD maven/mssc-brewery-gateway-0.0.1-SNAPSHOT.jar mssc-brewery-gateway-0.0.1-SNAPSHOT.jar
+[INFO] DOCKER>
+[INFO] DOCKER> ---> ea039b94ff97
+[INFO] DOCKER> Step 4/13 : RUN java -Djarmode=layertools -jar mssc-brewery-gateway-0.0.1-SNAPSHOT.jar extract
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in e4d9081eac6e
+[INFO] DOCKER> Removing intermediate container e4d9081eac6e
+[INFO] DOCKER> ---> 9cad8ba1a11f
+[INFO] DOCKER> Step 5/13 : FROM openjdk:11-jre-slim
+[INFO] DOCKER>
+[INFO] DOCKER> ---> ff68ba8d72c9
+[INFO] DOCKER> Step 6/13 : LABEL PROJECT_NAME=mssc-brewery-gateway       PROJECT=com.kwgdev:mssc-brewery-gateway:jar:0.0.1-SNAPSHOT
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in 9eb47f63e5c9
+[INFO] DOCKER> Removing intermediate container 9eb47f63e5c9
+[INFO] DOCKER> ---> db5344883e50
+[INFO] DOCKER> Step 7/13 : EXPOSE 8080
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in 9b94f4b10660
+[INFO] DOCKER> Removing intermediate container 9b94f4b10660
+[INFO] DOCKER> ---> eb8412c5fc5a
+[INFO] DOCKER> Step 8/13 : WORKDIR application
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in 88c155502a2d
+[INFO] DOCKER> Removing intermediate container 88c155502a2d
+[INFO] DOCKER> ---> 7ee9466bdb49
+[INFO] DOCKER> Step 9/13 : COPY --from=builder application/dependencies/ ./
+[INFO] DOCKER>
+[INFO] DOCKER> ---> 5ff4da91f45d
+[INFO] DOCKER> Step 10/13 : COPY --from=builder application/spring-boot-loader/ ./
+[INFO] DOCKER>
+[INFO] DOCKER> ---> f94b6ea9cb62
+[INFO] DOCKER> Step 11/13 : COPY --from=builder application/snapshot-dependencies/ ./
+[INFO] DOCKER>
+[INFO] DOCKER> ---> add64674c262
+[INFO] DOCKER> Step 12/13 : COPY --from=builder application/application/ ./
+[INFO] DOCKER>
+[INFO] DOCKER> ---> 9bf735adf0ec
+[INFO] DOCKER> Step 13/13 : ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "org.springframework.boot.loader.JarLauncher"]
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in 3beee053571d
+[INFO] DOCKER> Removing intermediate container 3beee053571d
+[INFO] DOCKER> ---> b925bfe8365c
+[INFO] DOCKER> Successfully built b925bfe8365c
+[INFO] DOCKER> Successfully tagged <docker-username>/mssc-brewery-gateway:latest
+[INFO] DOCKER> [<docker-username>/mssc-brewery-gateway:latest] "mssc-brewery-gateway": Built image sha256:b925b
+[INFO] DOCKER> [<docker-username>/mssc-brewery-gateway:latest] "mssc-brewery-gateway": Tag with latest,0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.279 s
+[INFO] Finished at: 2021-01-28T23:27:25-06:00
+[INFO] ------------------------------------------------------------------------
